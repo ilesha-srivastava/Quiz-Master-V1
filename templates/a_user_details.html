@@ -1,0 +1,43 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+<!-- shows the quiz attempt details for a specific user  -->
+
+<div class="container">
+    <h2>Quiz Attempts for {{ user.fullname }}</h2>    
+    {% if attempts %}
+    <table class="list">
+        <thead>
+            <tr>
+                <th>Quiz Name</th>
+                <th>Subject</th>
+                <th>Chapter</th>
+                <th>Marks Scored</th>
+                <th>Date Attempted</th>
+                <th>Time of submission</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for attempt_id, details in attempts.items() %}
+            <tr>
+                <td>{{ details.quiz_name }}</td>
+                <td>{{ details.subject }}</td>
+                <td>{{ details.chapter }}</td>
+                <td>{{ details.marks_scored }}</td>
+                <td>{{ details.date[:10] }}</td>
+                <td>{{ details.date[11:] }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>This user hasn't attempted any quizzes yet.</p>
+    {% endif %}
+
+    <a href="/admin_summary" class="btn btn-back">
+        Go back
+    </a>
+</div>
+{% endblock %}

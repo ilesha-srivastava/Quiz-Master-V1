@@ -1,0 +1,14 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+<div class="container">
+    {% if error %}
+    <div class="error-message">
+        <strong>{{ error }}</strong>
+        <br>
+
+    </div>
+    <a href="/admin" class="btn">Go back</a>
+</div>
+
+{% endif %}
+{% endblock %}

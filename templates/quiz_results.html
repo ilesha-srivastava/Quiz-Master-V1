@@ -1,0 +1,61 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+<!-- Main Container -->
+<div class="container">
+    <h1>Quiz Results</h1>
+
+    <!-- Quiz Details -->
+    <div class="quiz-info">
+        <p><strong>Quiz Name:</strong> {{ quiz.quiz_name }}</p>
+        <p><strong>Subject:</strong> {{ subject.subject_name }}</p>
+        <p><strong>Chapter:</strong> {{ chapter.chapter_name }}</p>
+        <p><strong>Your Score:</strong> {{ score }} out of {{ total_questions }}</p>
+        <p><strong>Percentage:</strong> {{ (score / total_questions * 100) | round(2) }}%</p>
+    </div>
+
+
+    <!-- Quiz Questions -->
+    <form class="question-section">
+        {% for question in quiz.questions %}
+        <div class="question-card">
+            <h3>Question {{ question.question_id }}: {{ question.question_title }}</h3>
+            <p>Question Statement: {{ question.question_statement }}</p>
+            <ul class="options-list">
+                <li>
+                    <input type="radio" id="option1_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_1" {% if user_responses[question.question_id] == "option_1" %}checked{% endif %} disabled>
+                    <label for="option1_{{ question.question_id }}">{{ question.option_1_id }}</label>
+                </li>
+                <li>
+                    <input type="radio" id="option2_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_2" {% if user_responses[question.question_id] == "option_2" %}checked{% endif %} disabled>
+                    <label for="option2_{{ question.question_id }}">{{ question.option_2_id }}</label>
+                </li>
+                <li>
+                    <input type="radio" id="option3_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_3" {% if user_responses[question.question_id] == "option_3" %}checked{% endif %} disabled>
+                    <label for="option3_{{ question.question_id }}">{{ question.option_3_id }}</label>
+                </li>
+                <li>
+                    <input type="radio" id="option4_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_4" {% if user_responses[question.question_id] == "option_4" %}checked{% endif %} disabled>
+                    <label for="option4_{{ question.question_id }}">{{ question.option_4_id }}</label>
+                </li>
+            </ul>
+
+            <p class = "answer">Answer: {{question.answer_id}}</p>
+            <!-- display whether the selected option is correct or not -->
+             {% if question.answer_id == user_responses[question.question_id] %}
+             <p class = "correct-answer">The answer is correct</p>
+             {% else %}
+             <p class = "incorrect-answer">The answer is incorrect</p>
+             {% endif %}
+                         
+            
+            <p>{{message}}</p>
+        </div>
+        {% endfor %}
+    </form>
+
+    <a href="/user" class="btn">Back to Quizzes</a>
+    <a href="/user_scores" class="btn">Go to Scores</a>
+</div>
+
+{% endblock %}

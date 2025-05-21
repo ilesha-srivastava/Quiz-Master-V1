@@ -1,0 +1,54 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+<!-- Main Container -->
+<div class="container">
+    <h1>Quiz Scores</h1>
+
+    {% if quiz_scores %}
+    
+    <div class="quiz-attempt">     
+        <!-- <h3>Your Responses:</h3> -->
+        <table class="list">
+            <thead>
+                <tr>
+                    <th>Quiz title</th>
+                    <th>No. of Questions</th>
+                    <th>Date of Attempt</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Marks scored</th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for attempt in quiz_scores %}
+            <tr>
+                <td>{{ quizzes[attempt.quiz_id].quiz_name }}</td>
+                <td>{{ user_responses[attempt.quiz_id].num_questions }}</td>
+                <td>{{ attempt.time_stamp_of_attempt[0:9] }}</td>
+                <td>{{ attempt.time_stamp_of_attempt[11:] }}</td>
+                <td>{{ quizzes[attempt.quiz_id].duration }}</td>
+                <td>{{ attempt.marks_scored }} / {{no_of_questions}}</td>
+                <td class="actions">
+                    <a href="{{ url_for('quiz_results', quiz_id=attempt.quiz_id, attempt_id=attempt.id) }}" class="btn">
+                        View
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    
+
+    <!-- If no quizzes have been attempted -->
+    {% else %}
+    <h4>No quizzes attempted yet.</h4>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Quiz Master</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand"><a href="/">QUIZ MASTER</a></div>
+        <div class="navbar-links">
+            <a href="/admin">Home</a>
+            <a href="/quiz">Quizzes</a>
+            <a href="/admin_summary">Summary</a>
+            <a href="/logout">Logout</a>
+
+        </div>
+        <form action="/search" method="POST">
+            <div class="navbar-search">
+                <input type="text" name = "search_query" placeholder="Search...">
+                <button type="submit" id = "btn-search">Search</button>
+            </div>
+        </form>
+        <div class="navbar-welcome">Welcome, Admin!</div>
+    </nav>
+
+    {% block content %}
+    <!-- Child HTML content will be inserted here -->
+    {% endblock %}
+
+</body>
+
+</html>

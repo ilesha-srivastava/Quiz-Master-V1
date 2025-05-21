@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master - Login</title>
+    <link rel="stylesheet" href="/static/css/signup_signin.css">
+    <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-logo">QUIZ MASTER</div>
+        <nav class="header-nav">
+            <a href = "/">Home</a>
+            <a href = "/signup">Register</a>
+        </nav>
+    </header>
+
+    <!-- Login Container -->
+    <div class="container">
+        <h1>Login to Quiz Master</h1>
+        <form action = "/login" method = "POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href = "/signup">Sign up here</a>.</p>
+        <!-- if the login details are invalid, display error message using jinja2 templating -->
+        <div class = "error">
+            {{message}}
+        </div>
+    </div>
+</body>
+
+</html>

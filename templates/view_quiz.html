@@ -1,0 +1,42 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+<!-- Main Container -->
+<div class="container">
+    <h1>Quiz Details</h1>
+
+    <!-- Quiz Information -->
+    <div class="quiz-info">
+        <h2>{{ quiz.quiz_name }}</h2>
+        <p><strong>Date:</strong> {{ quiz.date_of_quiz }}</p>
+        <p><strong>Duration:</strong> {{ quiz.duration }} minutes</p>
+        <p><strong>Subject:</strong> {{ subject.subject_name }} </p>
+        <p><strong>Chapter:</strong> {{ chapter.chapter_name }} </p>
+        <p>Each question is of <strong>1 mark</strong></p>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="questions-section">
+        <h3>Questions</h3>
+
+        {% if quiz.questions %}
+            {% for question in quiz.questions %}
+                <div class="question-card">
+                    <h4>Question {{ loop.index }}: {{ question.question_title }}</h4>
+                    <ul class="options-list">
+                        <li><strong>Option 1:</strong> {{ question.option_1_id }}</li>
+                        <li><strong>Option 2:</strong> {{ question.option_2_id }}</li>
+                        <li><strong>Option 3:</strong> {{ question.option_3_id }}</li>
+                        <li><strong>Option 4:</strong> {{ question.option_4_id }}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No questions available for this quiz.</p>
+        {% endif %}
+    </div>
+
+    <a href="/user" class="btn">Back to Quizzes</a>
+</div>
+
+{% endblock %}

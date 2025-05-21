@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Quiz Master</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand"><a href="/">QUIZ MASTER</a></div>
+        <div class="navbar-links">
+            <a href="/user">Home</a>
+            <a href="/user_scores">Scores</a>
+            <a href="/user_summary">Summary</a>
+            <a href="/login">Logout</a>
+
+        </div>
+        <form action="/search/user" method="POST">
+            <div class="navbar-search">
+                <input type="text" name = "search_query" placeholder="Search...">
+                <button type="submit" id = "btn-search">Search</button>
+            </div>
+        </form>
+        <div class="navbar-welcome">Welcome, User!</div>
+    </nav>
+
+    {% block content %}
+    <!-- Child HTML content will be inserted here -->
+    {% endblock %}
+
+</body>
+</html>

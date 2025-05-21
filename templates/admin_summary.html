@@ -1,0 +1,41 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+<!-- shows the basic summary about the users  -->
+
+<div class="container">
+    <h2>User Management</h2>
+    {% if users %}
+    <table class="list">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="/admin_summary/user_details/{{user.id}}" class="btn">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <p>No users available</p>
+
+    {% endif %}
+</div>
+{% endblock %}

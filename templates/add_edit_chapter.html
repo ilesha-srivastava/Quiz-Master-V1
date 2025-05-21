@@ -1,0 +1,47 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+<!-- Form to add a chapter in a subject  -->
+
+    <!-- Main Container -->
+    <div class="form-container">
+    {% if add_chapter %}
+        <h1>Add New chapter</h1>
+        <form class="add-form" action = "/addChapter/{{subject_id}}" method = "POST">
+            <label for="subject_id">Subject ID:</label>
+            <input type="text" id="subject_id" name="subject_id" value = {{subject_id}} readonly>
+
+            <label for="chapter-name">Chapter Name:</label>
+            <input type="text" id="chapter_name" name="chapter_name" placeholder="Enter chapter name" required>
+
+            <label for="chapter-description">Chapter Description:</label>
+            <textarea id="chapter_description" name="chapter_description" placeholder="Enter chapter description"></textarea>
+
+            <label for="no_of_questions">Number of Questions:</label>
+            <input type="number" id="no_of_questions" name="no_of_questions" placeholder="Enter no_of_questions" required>
+
+            <button type="submit" class="btn">Add chapter</button>
+            <a href="/admin" class="btn">Go back</a>
+        </form>
+
+        {% else %}
+        <h1>Edit chapter</h1>
+        <form class="edit-form" action =  "/editChapter/{{chapter.chapter_id}}" method = "POST">
+            
+            <label for="chapter-name">Chapter Name:</label>
+            <input type="text" id="chapter-name" name="chapter-name" value = {{chapter.chapter_name}} required>
+
+            <label for="chapter-description">Chapter Description:</label>
+            <textarea id="chapter-description" name="chapter-description" >{{chapter.description}}</textarea>
+
+            <label for="no_of_questions">Number of Questions:</label>
+            <input type="number" id="no_of_questions" name = "no_of_questions" value = {{chapter.no_of_questions}} required>
+
+            <button type="submit" class = "btn">Save changes</button>
+            <a href="/admin" class="btn">Go back</a>
+        </form>
+
+        {% endif %}
+    </div>
+
+{% endblock %}

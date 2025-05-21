@@ -1,0 +1,66 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+<div class="container">
+    <h1>Subjects</h1>
+
+    {% if subjects %}
+
+        <div class="cards">
+            {% for subject in subjects %}
+            <div class="card">
+                <h2>{{ subject.subject_name }}</h2>
+                <p>{{ subject.description }}</p>
+                <div class="actions">
+                    <a href="/editSubject/{{ subject.subject_code }}" class="btn edit">Edit</a>
+                    <a href="/deleteSubject/{{ subject.subject_code }}" class="btn delete">Delete</a>
+                </div>
+
+                {% if subject.chapters %}
+                <table class="list">
+                    <thead>
+                        <tr>
+                            <th>Chapter</th>
+                            <th>Number of Questions</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for chapter in subject.chapters %}
+                        <tr>
+                            <td>{{ chapter.chapter_name }}</td>
+                            <td>{{ chapter.no_of_questions }}</td>
+                            <td class="actions">
+                                <a href="/editChapter/{{ chapter.chapter_id }}" class="btn edit">Edit</a>
+                                <a href="/deleteChapter/{{ chapter.chapter_id }}" class="btn delete">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>No chapters available for this subject.</p>
+                {% endif %}
+
+                <div class = "add">
+                    <a href="/addChapter/{{ subject.subject_code }}" class="btn add-btn">
+                        Add New Chapter
+                    </a>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+        
+    <!-- If no data is available in subject table -->
+    {% else %}
+        <h4>No subjects are available...</h4>
+        
+    {% endif %}
+    <a href="/addSubject" class="btn">
+        Add New Subject
+    </a>
+
+</div>
+
+{% endblock %}

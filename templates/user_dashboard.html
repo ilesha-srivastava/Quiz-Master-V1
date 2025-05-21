@@ -1,0 +1,86 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Available Quizzes</h1>
+
+        <!-- If subjects with quizzes are available -->
+        {% if subjects %}
+
+        <!-- Subject Cards -->
+        <div class="cards">
+            {% for subject in subjects %}
+            <div class="card">
+                <div class="subject-header">
+                    <p><strong>Subject:</strong> {{ subject.subject_name }} </p>
+                    <p><strong>Subject description:</strong> {{ subject.description }} </p>
+                </div>
+
+                {% if subject.chapters %}
+                    {% for chapter in subject.chapters %}
+                    <div class="chapter-section">
+                        <p><strong>Chapter:</strong> {{ chapter.chapter_name }} </p>
+                        
+                        {% if chapter.quizzes %}
+                        <table class="list">
+                            <thead>
+                                <tr>
+                                    <th>Quiz Title</th>
+                                    <th>Duration</th>
+                                    <th>Date</th>
+                                    <th>Questions</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for quiz in chapter.quizzes %}
+                                <tr>
+                                    <td>{{ quiz.quiz_name }}</td>
+                                    <td>{{ quiz.duration }}</td>
+                                    <td>{{ quiz.date_of_quiz }}</td>
+                                    <td>{{ quiz.questions|length }}</td>
+                                    <td class="actions">
+                                    {% if quiz.date_of_quiz <= date_now %}
+
+                                        <a href="/start_quiz/{{ quiz.quiz_id }}" class="btn">
+                                            Start
+                                        </a>
+                                        <a href="/view_quiz/{{ quiz.quiz_id }}" class="btn">
+                                            View
+                                        </a>
+                                        {% else %}
+                                        <p>Not released yet</p>
+                                    </td>
+                                    
+
+                                    
+                                    {% endif %}
+                                </tr>
+                                
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p class="no-quizzes">No quizzes available for this chapter</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-chapters">No chapters available for this subject</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- If no subjects available -->
+        {% else %}
+        <div class="no-content">
+            <h4>No quizzes are available at this time...</h4>
+        </div>
+        {% endif %}
+    </div>
+
+ 
+
+{% endblock %}

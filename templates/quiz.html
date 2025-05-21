@@ -1,0 +1,64 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Quizzes</h1>
+
+        <!-- If some data is available -->
+        {% if quizzes %}
+
+        <!-- Dynamic Subject Cards -->
+        <div class="cards">
+            {% for quiz in quizzes %}
+            <div class="card">
+                <h2>{{ quiz.quiz_name }}</h2>
+                <p>{{ quiz.duration }}</p>
+                <div class="actions">
+                    <a href="/editQuiz/{{quiz.quiz_id}}" class="btn edit">Edit</a>
+                    <a href="/deleteQuiz/{{quiz.quiz_id}}" class="btn delete">Delete</a>
+                </div>
+
+                {% if quiz.questions %}
+                    <table class="list">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for question in quiz.questions %}
+                                <tr>
+                                    <td>{{ question.question_id }}</td>
+                                    <td>{{ question.question_title }}</td>
+                                
+                                    <td class="actions">
+                                        <a href="/editQuestion/{{ question.question_id}}" class="btn edit">Edit</a>
+                                        <a href="/deleteQuestion/{{ question.question_id }}" class="btn delete">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No question available for this quiz right now.</p>
+                {% endif %}
+
+                <a href="/addQuestion/{{ quiz.quiz_id }}" class="btn add-btn">
+                    Add New Question
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h4>No Quiz are available...</h4>
+        {% endif %}
+
+        <a href="/addQuiz" class="btn">
+            Add New Quiz
+        </a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master - Register</title>
+    <link rel="stylesheet" href="/static/css/signup_signin.css">
+    <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-logo">QUIZ MASTER</div>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    <!-- Register Container -->
+    <div class="container">
+        <h1>Create an Account</h1>
+        <form action = "/signup" method = "POST">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="username">Username (Email):</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="text" id="dob" name="dob" required>
+
+            <label for="dob">Qualification:</label>
+            <input type="text" id="qualification" name="qualification" required>
+
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a>.</p>
+        <div class = "error">
+            {{message}}
+        </div>
+    </div>
+</body>
+
+</html>

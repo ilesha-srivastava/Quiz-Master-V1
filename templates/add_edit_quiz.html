@@ -1,0 +1,68 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+<!-- Form to add a quiz for a chapter  -->
+
+<div class="form-container">
+    {% if add_quiz %}
+    <h1>Add New Quiz</h1>
+    <form class="add-form" method="POST" action="/addQuiz">
+        <label for="quiz_id">Quiz ID:</label>
+        <input type="text" id="quiz_id" name="quiz_id" placeholder="Enter Quiz ID" required>
+
+        <label for="quiz_name">Quiz Name:</label>
+        <input type="text" id="quiz_name" name="quiz_name" placeholder="Enter Quiz Name" required>
+
+        <label for="date_of_quiz">Date of Quiz:</label>
+        <input type="date" id="date_of_quiz" name="date_of_quiz" required>
+
+        <label for="duration">Duration (in minutes):</label>
+        <input type="time" id="duration" name="duration" placeholder="Enter Duration" required>
+
+        <!-- dropdown input for selecting the chapter -->
+        <label for="chapter_id">Select Chapter:</label>
+        <select id="chapter_id" name="chapter_id" required>
+            <option value="" disabled selected>Select a chapter</option>
+            {% for chapter in chapters %}
+                <option value="{{ chapter.chapter_id }}">{{ chapter.chapter_name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn">Add Quiz</button>
+        <a href="/quiz" class="btn">Go back</a>
+    </form>
+
+    {% else %}
+    <h1>Edit Quiz</h1>
+
+    <!-- Edit Quiz Form -->
+    <form class="edit-form" method="POST" action="/editQuiz/{{quiz.quiz_id}}">
+        <label for="quiz_id">Quiz ID:</label>
+        <input type="text" id="quiz_id" name="quiz_id" value="{{quiz.quiz_id}}" required>
+
+        <label for="quiz_name">Quiz Name:</label>
+        <input type="text" id="quiz_name" name="quiz_name" value="{{quiz.quiz_name}}" required>
+
+        <label for="date_of_quiz">Date of Quiz:</label>
+        <input type="date" id="date_of_quiz" name="date_of_quiz" value="{{quiz.date_of_quiz}}" required>
+
+        <label for="duration">Duration (in minutes):</label>
+        <input type="time" id="duration" name="duration" value="{{quiz.duration}}" required>
+
+        <!-- dropdown input for selecting the chapter -->
+        <label for="chapter_id">Select Chapter:</label>
+        <select id="chapter_id" name="chapter_id" required>
+            <option value="" disabled selected>Select a chapter</option>
+            {% for chapter in chapters %}
+                <option value="{{ chapter.chapter_id }}">{{ chapter.chapter_name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn">Save changes</button>
+        <a href="/quiz" class="btn">Go back</a>
+
+    </form>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+<div class="container">
+    <h1>Performance Summary - {{ user.fullname }}</h1>
+    
+    <!-- Stats Cards -->
+    <div class="stats-cards">        
+        <div class="stat-card">
+            <div class="stat-value">{{ total_chapters }}</div>
+            <div class="stat-label">Total Chapters</div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-value">{{ total_quizzes }}</div>
+            <div class="stat-label">Available Quizzes</div>
+        </div>
+        
+        <div class="stat-card highlight">
+            <div class="stat-value">{{ attempted_quizzes }}</div>
+            <div class="stat-label">Number of times quiz attempted</div>
+        </div>
+    </div>
+
+<!-- Chapter Performance Table -->
+<div class="performance-table">
+    <h2>Chapter-wise Average Scores</h2>
+    
+    {% if chapter_avg_scores %}
+    <table class = "list">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Chapter</th>
+                <th>Average Score</th>
+                <th>Attempts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chapter in chapter_avg_scores %}
+            <tr>
+                <td>{{ chapter.subject_name }}</td>
+                <td>{{ chapter.chapter_name }}</td>
+                <td>{{ "%.1f"|format(chapter.avg_score) }}</td>
+                <td>{{ chapter.attempt_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No chapter attempts recorded yet.</p>
+    {% endif %}
+</div>
+</div>
+
+
+{% endblock %}

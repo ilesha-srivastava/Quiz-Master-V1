@@ -1,0 +1,84 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+
+<!-- form to add a question in a quiz  -->
+
+<div class="form-container">
+    {% if add_question %}
+    <h1>Add New Question</h1>
+
+    <form class="add-form" method="POST" action="/addQuestion/{{ quiz_id }}">
+        <label for="question_title">Question Title:</label>
+        <input type="text" id="question_title" name="question_title" placeholder="Enter the question title" required>
+
+        <label for="question_statement">Question Statement:</label>
+        <input type="text" id="question_statement" name="question_statement" placeholder="Enter the question statement" required>
+
+        <label for="option_1">Option 1:</label>
+        <input type="text" id="option_1" name="option_1" placeholder="Enter option 1" required>
+
+        <label for="option_2">Option 2:</label>
+        <input type="text" id="option_2" name="option_2" placeholder="Enter option 2" required>
+
+        <label for="option_3">Option 3:</label>
+        <input type="text" id="option_3" name="option_3" placeholder="Enter option 3" required>
+
+        <label for="option_4">Option 4:</label>
+        <input type="text" id="option_4" name="option_4" placeholder="Enter option 4" required>
+
+        <label for="answer">Correct Answer:</label>
+        <select id="answer" name="answer" required>
+            <option value="" disabled selected>Select the correct answer</option>
+            <option value="option_1">Option 1</option>
+            <option value="option_2">Option 2</option>
+            <option value="option_3">Option 3</option>
+            <option value="option_4">Option 4</option>
+        </select>
+
+        <button type="submit" class="btn">Add Question</button>
+        <a href="/quiz" class="btn">Go back</a>
+
+    </form>
+
+    {% else %}
+    <h1>Edit Question</h1>
+
+    <!-- Edit Question Form -->
+    <form class="edit-form" method="POST" action="/editQuestion/{{ question.question_id }}/{{ name }}">
+        <label for="question_title">Question Title:</label>
+        <input type="text" id="question_title" name="question_title" value="{{question.question_title}}" required>
+
+        <label for="question_statement">Question Statement:</label>
+        <input type="text" id="question_statement" name="question_statement" value="{{question.question_statement}}" required>
+
+        <label for="option_1">Option 1:</label>
+        <input type="text" id="option_1" name="option_1" value="{{question.option_1_id}}" required>
+
+        <label for="option_2">Option 2:</label>
+        <input type="text" id="option_2" name="option_2" value="{{question.option_2_id}}" required>
+
+        <label for="option_3">Option 3:</label>
+        <input type="text" id="option_3" name="option_3" value="{{question.option_3_id}}" required>
+
+        <label for="option_4">Option 4:</label>
+        <input type="text" id="option_4" name="option_4" value="{{question.option_4_id}}" required>
+
+        <label for="answer">Correct Answer:</label>
+        <select id="answer" name="answer" required>
+            <option value="" disabled selected>Select the correct answer</option>
+            <option value="option_1">Option 1</option>
+            <option value="option_2">Option 2</option>
+            <option value="option_3">Option 3</option>
+            <option value="option_4">Option 4</option>
+        </select>
+
+        <button type="submit" class="btn">Save changes</button>
+        <a href="/quiz/{{ name }}" class="btn">Go back</a>
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

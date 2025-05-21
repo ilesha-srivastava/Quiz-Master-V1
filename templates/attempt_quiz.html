@@ -1,0 +1,46 @@
+{% extends "user_layout.html" %}
+{% block content %}
+
+<!-- Main Container -->
+<div class="container">
+    <h1>Attempt Quiz: {{ quiz.quiz_name }}</h1>
+
+    <!-- Quiz Details -->
+    <div class="quiz-info">
+        <p><strong>Subject:</strong> {{ subject.subject_name }}</p>
+        <p><strong>Chapter:</strong> {{ chapter.chapter_name }}</p>
+        <p><strong>Duration:</strong> {{ quiz.duration }} minutes</p>
+    </div>
+
+    <!-- Quiz Questions -->
+    <form class="quiz-form" method="POST" action="/submitQuiz/{{ quiz.quiz_id }}">
+        {% for question in quiz.questions %}
+            <div class="question-card">
+                <h3>Question {{ question.question_id }}: {{ question.question_title }}</h3>
+                <p>Question Statement: {{ question.question_statement }}</h3>
+                <ul class="options-list">
+                    <li>
+                        <input type="radio" id="option1_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_1">
+                        <label for="option1_{{ question.question_id }}">{{ question.option_1_id }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="option2_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_2">
+                        <label for="option2_{{ question.question_id }}">{{ question.option_2_id }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="option3_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_3">
+                        <label for="option3_{{ question.question_id }}">{{ question.option_3_id }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="option4_{{ question.question_id }}" name="question_{{ question.question_id }}" value="option_4">
+                        <label for="option4_{{ question.question_id }}">{{ question.option_4_id }}</label>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">Submit Quiz</button>
+    </form>
+</div>
+
+{% endblock %}
