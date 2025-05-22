@@ -47,6 +47,10 @@ def signup():
         qualification = request.form.get("qualification")
 
         hashed_password = generate_password_hash(password)
+        
+        if not is_valid_password(password):
+            return render_template("signup.html", 
+            message="Password must be at least 8 characters and include uppercase, lowercase, digit, and special character.")
         # check whether the uname and password are already available in User table or not
         exists = User.query.filter_by(username = uname).first()
         if exists:          
@@ -691,6 +695,20 @@ def search_user_dashboard():
             return render_template("user_dashboard.html", subjects = subject, date_now = date_today_str)
     return redirect(url_for("user_dashboard"))
 ########################################### Supporter Functions ############################################################
+def is_valid_password(password):
+    """
+    Validates that the password has:
+    - At least 8 characters
+    - At least one uppercase letter
+    - At least one lowercase letter
+    - At least one digit
+    - At least one special character
+    """
+    pattern = re.compile(
+        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$'
+    )
+    return bool(pattern.match(password))
+
 def get_subjects():            
     # This function will return all the subjects from the database
     subjects = Subject.query.all()
