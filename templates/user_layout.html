@@ -10,10 +10,18 @@
 
 </head>
 
+<script>
+  function toggleNavbar() {
+    const navLinks = document.getElementById("navbarLinks");
+    navLinks.classList.toggle("active");
+  }
+</script>
+    
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-brand"><a href="/">QUIZ MASTER</a></div>
+        <button class="navbar-toggle" onclick="toggleNavbar()">☰</button>
         <div class="navbar-links">
             <a href="/user">Home</a>
             <a href="/user_scores">Scores</a>
