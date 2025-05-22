@@ -671,7 +671,6 @@ def search():
         elif user:
             return render_template("admin_summary.html", users = user)
 
-        
     return redirect(url_for("admin_dashboard"))
 
 @app.route("/search/user", methods = ["GET", "POST"])
@@ -690,7 +689,7 @@ def search_user_dashboard():
         if subject:
             return render_template("user_dashboard.html", subjects = subject, date_now = date_today_str)
 
-
+     return redirect(url_for("user_dashboard"))
 ########################################### Supporter Functions ############################################################
 def get_subjects():            
     # This function will return all the subjects from the database
