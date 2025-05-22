@@ -1,4 +1,4 @@
-/* Enhanced Professional Authentication UI - Login & Signup Styles */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -77,7 +77,7 @@
     --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset & Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -261,7 +261,7 @@ body {
     display: block;
 }
 
-.container input {
+.container input, select{
     padding: var(--space-md);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -272,18 +272,18 @@ body {
     width: 100%;
 }
 
-.container input:hover {
+.container input:hover, select:hover{
     border-color: var(--primary-hover);
 }
 
-.container input:focus {
+.container input:focus, select:focus{
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px var(--primary-transparent);
     background-color: var(--white);
 }
 
-/* Enhanced Button */
+
 .container button {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: var(--white);
@@ -329,7 +329,7 @@ body {
     transform: scale(0.98);
 }
 
-/* Enhanced Text */
+
 .container p {
     font-size: 0.95rem;
     margin-top: var(--space-lg);
@@ -363,7 +363,6 @@ body {
     width: 100%;
 }
 
-/* Enhanced Error */
 .error {
     background: var(--error-light);
     color: var(--error);
@@ -386,7 +385,7 @@ body {
     margin-right: var(--space-sm);
 }
 
-/* Enhanced Responsive */
+
 @media (max-width: 768px) {
     .header {
         padding: var(--space-md);
