@@ -600,6 +600,7 @@ def user_quiz_attempts():
         # Key -> quiz_id, value -> quiz object
     user_responses = {}
         # Key -> quiz_id, value -> dicttionary
+    num_questions = 0
     for score in quiz_scores:
         quiz = Quiz.query.get(score.quiz_id)
         quizzes[score.quiz_id] = quiz
