@@ -280,6 +280,45 @@ a:hover {
     letter-spacing: 0.01em;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-toggle {
+    display: block;
+    margin-left: auto;
+    padding: var(--space-sm);
+  }
+
+  .navbar-links {
+    width: 100%;
+    flex-direction: column;
+    display: none;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-search {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .navbar-search input {
+    width: 100%;
+  }
+
+  .navbar-welcome {
+    padding: var(--space-sm) 0;
+  }
+}
+
 /* Container Styles */
 .container {
     max-width: 1800px;
