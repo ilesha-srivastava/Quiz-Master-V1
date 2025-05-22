@@ -5,6 +5,8 @@ from flask import Flask, session
 #  from controllers.controllers import *                - importing here causes circular import
 # Importing the database and User model
 from models.models import db, User
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Use a secure and random value
@@ -21,7 +23,7 @@ def create_admin():
             admin_user = User(
                 fullname = "Admin",
                 username = "admin@gmail.com",
-                password = "admin123",  
+                password = generate_password_hash("admin123"),   
                 role = "ADMIN",
                 dob = "2000-01-01",
                 qualification = "N/A"
