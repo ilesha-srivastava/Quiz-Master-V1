@@ -44,7 +44,7 @@
     <h1>Edit Question</h1>
 
     <!-- Edit Question Form -->
-    <form class="edit-form" method="POST" action="/editQuestion/{{ question.question_id }}/{{ name }}">
+    <form class="edit-form" method="POST" action="/editQuestion/{{ question.question_id }}">
         <label for="question_title">Question Title:</label>
         <input type="text" id="question_title" name="question_title" value="{{question.question_title}}" required>
 
@@ -73,7 +73,7 @@
         </select>
 
         <button type="submit" class="btn">Save changes</button>
-        <a href="/quiz/{{ name }}" class="btn">Go back</a>
+        <a href="/quiz" class="btn">Go back</a>
 
     </form>
 
