@@ -1,4 +1,4 @@
-/* Enhanced Professional Quiz Master UI - Global Styles */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -77,7 +77,6 @@
     --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -328,7 +327,7 @@ a:hover {
     flex: 1;
 }
 
-/* Enhanced Card Styles - FIXED SIZES */
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(600px, 2fr));
@@ -735,7 +734,7 @@ textarea {
     width: auto;
 }
 
-/* Enhanced Quiz Results Styles */
+/* Quiz Results Styles */
 .correct-answer {
     color: var(--success);
     font-weight: 600;
@@ -769,7 +768,7 @@ textarea {
     border-left: 3px solid var(--primary);
 }
 
-/* Enhanced Stats Cards - FIXED SIZES */
+
 .stats-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
