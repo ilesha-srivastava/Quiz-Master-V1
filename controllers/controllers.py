@@ -688,8 +688,7 @@ def search_user_dashboard():
         date_today_str = date_now.strftime("%Y-%m-%d")      # Specifyin the date format
         if subject:
             return render_template("user_dashboard.html", subjects = subject, date_now = date_today_str)
-
-     return redirect(url_for("user_dashboard"))
+    return redirect(url_for("user_dashboard"))
 ########################################### Supporter Functions ############################################################
 def get_subjects():            
     # This function will return all the subjects from the database
