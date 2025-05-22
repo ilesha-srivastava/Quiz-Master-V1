@@ -1,4 +1,4 @@
-i# Defining all app routes
+# Defining all app routes
 
 from flask import Flask, render_template, request, redirect, url_for, session
 from models.models import *
