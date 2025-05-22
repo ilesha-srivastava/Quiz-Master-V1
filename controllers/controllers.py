@@ -5,6 +5,7 @@ from models.models import *
 # Imports the instance of current app from the app.py file
 from app import app
 from datetime import date, datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Home page 
 @app.route("/")
@@ -19,9 +20,9 @@ def login():
         password = request.form.get("password")
 
         # check whether the uname and password are already available in User table or not
-        user_data = User.query.filter_by(username = uname, password = password).first()
+        user_data = User.query.filter_by(username = uname).first()
 
-        if user_data:
+        if user_data and check_password_hash(user_data.password, password):
             session['username'] = uname  # Store in session
             session['role'] = user_data.role
             if user_data.role == "ADMIN":
@@ -45,12 +46,13 @@ def signup():
         dob = request.form.get("dob")
         qualification = request.form.get("qualification")
 
+        hashed_password = generate_password_hash(password)
         # check whether the uname and password are already available in User table or not
         exists = User.query.filter_by(username = uname).first()
         if exists:          
             return render_template("signup.html", message = "Oops...Username already exists!!")
         
-        new_user = User(fullname = fullname, username = uname, password = password, dob = dob, qualification = qualification)
+        new_user = User(fullname = fullname, username = uname, password = hashed_password, dob = dob, qualification = qualification)
         db.session.add(new_user)
         db.session.commit()
 
