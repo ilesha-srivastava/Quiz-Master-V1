@@ -62,7 +62,7 @@ def signup():
         db.session.commit()
 
         # If registration is successful display message
-        return render_template("login.html", message = "Registration Successful!!!")
+        return render_template("login.html", message = "Registration Successful!!!", success = True)
     return render_template("signup.html")
 
 @app.route('/logout')
