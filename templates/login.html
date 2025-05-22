@@ -32,7 +32,12 @@
         </form>
         <p>Don't have an account? <a href = "/signup">Sign up here</a>.</p>
         <!-- if the login details are invalid, display error message using jinja2 templating -->
-        {% if message %}
+        {% if message and success %}
+            <div class = "success">
+                {{message}}
+            </div>
+
+        {% elif message %}
             <div class = "error">
                 {{message}}
             </div>
